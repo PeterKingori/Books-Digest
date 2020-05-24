@@ -10,8 +10,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
-    private ListView mListView;
+    @BindView(R.id.reviewList) ListView mListView;
+
     private String[] titles = new String[] {"Unbowed", "The Davis Dynasty", "When Breath Becomes Air"};
     private String[] authors = new String[] {"Wangari Maathai", "John Rothchild", "Paul Kalanithi"};
     private String[] dates = new String[] {"January 10, 2018", "May 4, 2019", "November 25, 2019"};
@@ -35,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mListView = (ListView) findViewById(R.id.reviewList);
+        ButterKnife.bind(this);
+
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, titles);
         mListView.setAdapter(adapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
