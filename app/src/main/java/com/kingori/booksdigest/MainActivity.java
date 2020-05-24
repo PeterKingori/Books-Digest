@@ -3,8 +3,11 @@ package com.kingori.booksdigest;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
+    private ListView mListView;
     private String[] titles = new String[] {"Unbowed", "The Davis Dynasty", "When Breath Becomes Air"};
     private String[] authors = new String[] {"Wangari Maathai", "John Rothchild", "Paul Kalanithi"};
     private String[] dates = new String[] {"January 10, 2018", "May 4, 2019", "November 25, 2019"};
@@ -23,9 +26,13 @@ public class MainActivity extends AppCompatActivity {
                     "you are ceaselessly striving."};
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mListView = (ListView) findViewById(R.id.reviewList);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, titles);
+        mListView.setAdapter(adapter);
     }
 }
