@@ -6,4 +6,6 @@
     <string name="review_date">Review date</string>
     <string name="author_name">Author\'s name</string>
     <string name="add_review_here">Add review here…</string>
+    <string name="addButton">Add review</string>
+    <string name="cancelButton">Cancel</string>
 </resources>
