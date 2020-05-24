@@ -8,22 +8,20 @@ import android.widget.EditText;
 
 import java.util.Arrays;
 
-public class BookDetailsActivity extends AppCompatActivity {
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-    private EditText mMBookTitleEditText;
-    private EditText mMAuthorEditText;
-    private EditText mMDateEditText;
-    private EditText mMReviewEditText;
+public class BookDetailsActivity extends AppCompatActivity {
+    @BindView(R.id.bookTitle) EditText mMBookTitleEditText;
+    @BindView(R.id.authorEditText) EditText mMAuthorEditText;
+    @BindView(R.id.dateEditText) EditText mMDateEditText;
+    @BindView(R.id.reviewEditText) EditText mMReviewEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_details);
-
-        mMBookTitleEditText = (EditText) findViewById(R.id.bookTitle);
-        mMAuthorEditText = (EditText) findViewById(R.id.authorEditText);
-        mMDateEditText = (EditText) findViewById(R.id.dateEditText);
-        mMReviewEditText = (EditText) findViewById(R.id.reviewEditText);
+        ButterKnife.bind(this);
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
         mMBookTitleEditText.setText(title);
