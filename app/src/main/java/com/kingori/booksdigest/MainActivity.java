@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.reviewList) ListView mListView;
+    private EditText mBookTitle;
 
     private String[] titles = new String[] {"Unbowed", "The Davis Dynasty", "When Breath Becomes Air"};
     private String[] authors = new String[] {"Wangari Maathai", "John Rothchild", "Paul Kalanithi"};
@@ -41,12 +43,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        mBookTitle = findViewById(R.id.bookTitle);
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, titles);
         mListView.setAdapter(adapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String title = ((TextView)view).getText().toString();
                 Toast.makeText(MainActivity.this, title, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, BookDetailsActivity.class);
