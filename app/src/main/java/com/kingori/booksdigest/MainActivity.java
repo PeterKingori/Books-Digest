@@ -2,6 +2,7 @@ package com.kingori.booksdigest;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -48,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String title = ((TextView)view).getText().toString();
                 Toast.makeText(MainActivity.this, title, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, BookDetailsActivity.class);
+                startActivity(intent);
             }
         });
     }

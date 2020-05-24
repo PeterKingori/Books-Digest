@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Books Digest</string>
     <string name="top_text_view">My List</string>
+    <string name="book_cover_image">Book cover</string>
+    <string name="book_title">Title</string>
+    <string name="review_date">Review date</string>
+    <string name="author_name">Author\'s name</string>
+    <string name="add_review_here">Add review here…</string>
 </resources>
