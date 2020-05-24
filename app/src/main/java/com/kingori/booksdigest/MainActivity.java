@@ -46,10 +46,11 @@ public class MainActivity extends AppCompatActivity {
         mListView.setAdapter(adapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 String title = ((TextView)view).getText().toString();
                 Toast.makeText(MainActivity.this, title, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, BookDetailsActivity.class);
+                intent.putExtra("title", title);
                 startActivity(intent);
             }
         });
