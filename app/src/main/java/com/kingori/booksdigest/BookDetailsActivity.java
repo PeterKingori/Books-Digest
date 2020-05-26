@@ -11,8 +11,8 @@ import android.widget.TextView;
 public class BookDetailsActivity extends AppCompatActivity {
     private EditText mBookTitle;
     private EditText mAuthor;
-
-    private String[] authors = new String[] {"Wangari Maathai", "John Rothchild", "Paul Kalanithi"};
+    private EditText mDate;
+    private EditText mReview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +20,16 @@ public class BookDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_book_details);
         mBookTitle = findViewById(R.id.bookTitle);
         mAuthor= findViewById(R.id.authorEditText);
+        mDate = findViewById(R.id.dateEditText);
+        mReview = findViewById(R.id.reviewEditText);
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
+        String author = intent.getStringExtra("author");
+        String date = intent.getStringExtra("date");
+        String review = intent.getStringExtra("review");
         mBookTitle.setText(title);
-
+        mAuthor.setText(author);
+        mDate.setText(date);
+        mReview.setText(review);
     }
 }

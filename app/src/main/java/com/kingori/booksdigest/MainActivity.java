@@ -51,6 +51,13 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, title, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, BookDetailsActivity.class);
                 intent.putExtra("title", title);
+                for(int i = 0; i < titles.length; i++){
+                    if(title.equals(titles[i])){
+                        intent.putExtra("author",authors[i]);
+                        intent.putExtra("date",dates[i]);
+                        intent.putExtra("review", reviews[i]);
+                    }
+                }
                 startActivity(intent);
             }
         });
