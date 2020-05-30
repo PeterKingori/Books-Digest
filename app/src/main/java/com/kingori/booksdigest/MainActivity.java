@@ -15,7 +15,7 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.reviewList) ListView mListView;
     @BindView(R.id.newReview) Button mNewReviewButton;
 
@@ -59,13 +59,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mNewReviewButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, AddReviewActivity.class);
-                startActivity(intent);
-            }
-        });
+        mNewReviewButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == mNewReviewButton) {
+            Intent intent = new Intent(MainActivity.this, AddReviewActivity.class);
+            startActivity(intent);
+        }
     }
 
 }
