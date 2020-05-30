@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +17,7 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.reviewList) ListView mListView;
-    @BindView(R.id.addReview) Button mButtonAddReview;
+    @BindView(R.id.newReview) Button mNewReviewButton;
 
     private String[] titles = new String[] {"Unbowed", "The Davis Dynasty", "When Breath Becomes Air"};
     private String[] authors = new String[] {"Wangari Maathai", "John Rothchild", "Paul Kalanithi"};
@@ -40,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, titles);
+        BooksArrayAdapter adapter = new BooksArrayAdapter(this, android.R.layout.simple_list_item_1, titles);
         mListView.setAdapter(adapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mButtonAddReview.setOnClickListener(new View.OnClickListener() {
+        mNewReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddReviewActivity.class);

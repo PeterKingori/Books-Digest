@@ -10,4 +10,8 @@
     <string name="cancel">Go back</string>
     <string name="add_review">Add review</string>
     <string name="get_review">Get review</string>
+    <string name="addReview">Add</string>
+    <string name="cancelReview">Cancel</string>
+    <string name="titleEdit">Title</string>
+    <string name="add_review_here">Add review here...</string>
 </resources>
