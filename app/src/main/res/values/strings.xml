@@ -5,7 +5,9 @@
     <string name="book_title">Title</string>
     <string name="review_date">Review date</string>
     <string name="author_name">Author\'s name</string>
-    <string name="add_review_here">Add review here…</string>
+    <string name="review_here">Review here…</string>
+    <string name="edit_review">Edit review</string>
+    <string name="cancel">Go back</string>
     <string name="add_review">Add review</string>
-    <string name="cancel">Cancel</string>
+    <string name="get_review">Get review</string>
 </resources>

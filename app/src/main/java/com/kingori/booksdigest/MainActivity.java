@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.reviewList) ListView mListView;
+    @BindView(R.id.addReview) Button mButtonAddReview;
 
     private String[] titles = new String[] {"Unbowed", "The Davis Dynasty", "When Breath Becomes Air"};
     private String[] authors = new String[] {"Wangari Maathai", "John Rothchild", "Paul Kalanithi"};
@@ -30,10 +32,6 @@ public class MainActivity extends AppCompatActivity {
             "and downs of the markets.", "An emotional investment well worth making: a moving and " +
             "thoughtful memoir of family, medicine and literature. It is, despite its grim undertone, " +
             "accidentally inspiring."};
-    private String[] favquotes = new String[] {"What people see as fearlessness is really persistence.",
-            "Bear markets make people a lot of money, they just don’t know it at the time.",
-            "You can't ever reach perfection, but you can believe in an asymptote toward which " +
-                    "you are ceaselessly striving."};
 
 
     @Override
@@ -61,5 +59,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        mButtonAddReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AddReviewActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
 }

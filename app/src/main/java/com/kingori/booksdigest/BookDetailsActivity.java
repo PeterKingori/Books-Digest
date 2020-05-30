@@ -9,10 +9,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class BookDetailsActivity extends AppCompatActivity {
-    private EditText mBookTitle;
-    private EditText mAuthor;
-    private EditText mDate;
-    private EditText mReview;
+    private TextView mBookTitle;
+    private TextView mAuthor;
+    private TextView mDate;
+    private TextView mReview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
