@@ -4,32 +4,33 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+
 public class BookDetailsActivity extends AppCompatActivity {
-    private TextView mBookTitle;
-    private TextView mAuthor;
-    private TextView mDate;
-    private TextView mReview;
+    @BindView(R.id.bookTitle) TextView mBookTitle;
+    @BindView(R.id.authorEditText) TextView mAuthor;
+    @BindView(R.id.dateEditText) TextView mDate;
+    @BindView(R.id.reviewEditText) TextView mReview;
+
+    private ReviewInfo review;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_details);
-        mBookTitle = findViewById(R.id.bookTitle);
-        mAuthor= findViewById(R.id.authorEditText);
-        mDate = findViewById(R.id.dateEditText);
-        mReview = findViewById(R.id.reviewEditText);
+        ButterKnife.bind(this);
+
         Intent intent = getIntent();
-        String title = intent.getStringExtra("title");
-        String author = intent.getStringExtra("author");
-        String date = intent.getStringExtra("date");
-        String review = intent.getStringExtra("review");
-        mBookTitle.setText(title);
-        mAuthor.setText(author);
-        mDate.setText(date);
-        mReview.setText(review);
+        int position = intent.getIntExtra("position", 0);
+        review = DataManager.getInstance().getReviews().get(position);
+        mBookTitle.setText(review.getTitle());
+        mAuthor.setText(review.getAuthor());
+        mDate.setText(review.getDate());
+        mReview.setText(review.getReview());
+
     }
 }
