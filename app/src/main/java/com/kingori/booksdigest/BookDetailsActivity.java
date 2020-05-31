@@ -18,6 +18,8 @@ public class BookDetailsActivity extends AppCompatActivity {
     @BindView(R.id.dateEditText) TextView mDate;
     @BindView(R.id.reviewEditText) TextView mReview;
     @BindView(R.id.editReview) Button mEditReviewButton;
+    private int position;
+    private static ReviewInfo selectedReview = null;
 
 
     @Override
@@ -27,8 +29,9 @@ public class BookDetailsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         Intent intent = getIntent();
 
-        int position = intent.getIntExtra("position", 0);
-        final ReviewInfo selectedReview = DataManager.getInstance().getReviews().get(position);
+        position = intent.getIntExtra("position", 0);
+        selectedReview = DataManager.getInstance().getReviews().get(position);
+
         final String currentTitle = selectedReview.getTitle();
         final String currentAuthor = selectedReview.getAuthor();
         final String currentDate = selectedReview.getDate();
@@ -52,12 +55,9 @@ public class BookDetailsActivity extends AppCompatActivity {
 
     private void displayReview(TextView mBookTitle, TextView mAuthor,
                                TextView mDate, TextView mReview) {
-        Intent intent = getIntent();
-        int position = intent.getIntExtra("position", 0);
-        ReviewInfo review = DataManager.getInstance().getReviews().get(position);
-        mBookTitle.setText(review.getTitle());
-        mAuthor.setText(review.getAuthor());
-        mDate.setText(review.getDate());
-        mReview.setText(review.getReview());
+        mBookTitle.setText(selectedReview.getTitle());
+        mAuthor.setText(selectedReview.getAuthor());
+        mDate.setText(selectedReview.getDate());
+        mReview.setText(selectedReview.getReview());
     }
 }
