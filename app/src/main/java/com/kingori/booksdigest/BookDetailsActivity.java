@@ -23,7 +23,13 @@ public class BookDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_details);
         ButterKnife.bind(this);
+        
+        displayReview(review, mBookTitle, mAuthor, mDate, mReview);
 
+    }
+
+    private void displayReview(ReviewInfo review, TextView mBookTitle, TextView mAuthor,
+                               TextView mDate, TextView mReview) {
         Intent intent = getIntent();
         int position = intent.getIntExtra("position", 0);
         review = DataManager.getInstance().getReviews().get(position);
@@ -31,6 +37,5 @@ public class BookDetailsActivity extends AppCompatActivity {
         mAuthor.setText(review.getAuthor());
         mDate.setText(review.getDate());
         mReview.setText(review.getReview());
-
     }
 }
