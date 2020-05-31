@@ -18,12 +18,14 @@ public class ReviewActivity extends AppCompatActivity {
     @BindView(R.id.reviewEditText) EditText mReview;
     @BindView(R.id.addReview) Button mAddReviewButton;
 
+    public static final String CURRENT_INFO = "com.kingori.booksdigest.CURRENT_INFO";
+    private ReviewInfo mCurrentReviewDetails;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
         ButterKnife.bind(this);
-        Intent intent = getIntent();
 
         mAddReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,11 +34,27 @@ public class ReviewActivity extends AppCompatActivity {
                 String author = mAuthor.getText().toString();
                 String date = mDate.getText().toString();
                 String review = mReview.getText().toString();
+                ReviewInfo newReview = new ReviewInfo(title, author, date, review);
                 Intent intent = new Intent(ReviewActivity.this, MainActivity.class);
                 intent.putExtra("title", title);
                 startActivity(intent);
             }
         });
 
+        readDisplayStateValues();
+        displayReviewDetails(mTitle, mAuthor, mDate, mReview);
+
+    }
+
+    private void displayReviewDetails(EditText title, EditText author, EditText date, EditText review) {
+        title.setText(mCurrentReviewDetails.getTitle());
+        author.setText(mCurrentReviewDetails.getAuthor());
+        date.setText(mCurrentReviewDetails.getDate());
+        review.setText(mCurrentReviewDetails.getReview());
+    }
+
+    private void readDisplayStateValues() {
+        Intent intent = getIntent();
+        mCurrentReviewDetails = intent.getParcelableExtra(CURRENT_INFO);
     }
 }

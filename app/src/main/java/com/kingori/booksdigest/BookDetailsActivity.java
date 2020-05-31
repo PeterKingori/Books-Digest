@@ -17,7 +17,7 @@ public class BookDetailsActivity extends AppCompatActivity {
     @BindView(R.id.authorEditText) TextView mAuthor;
     @BindView(R.id.dateEditText) TextView mDate;
     @BindView(R.id.reviewEditText) TextView mReview;
-    @BindView(R.id.addReview) Button mEditReviewButton;
+    @BindView(R.id.editReview) Button mEditReviewButton;
 
 
     @Override
