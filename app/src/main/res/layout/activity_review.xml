@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddReviewActivity">
+    tools:context=".ReviewActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -56,7 +56,7 @@
         android:background="@android:color/transparent"
         android:ems="10"
         android:hint="@string/review_date"
-        android:inputType="date"
+        android:inputType="text"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/titleEditText"
         app:layout_constraintStart_toStartOf="@+id/titleEditText"

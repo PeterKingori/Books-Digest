@@ -11,7 +11,7 @@ import android.widget.EditText;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AddReviewActivity extends AppCompatActivity {
+public class ReviewActivity extends AppCompatActivity {
     @BindView(R.id.titleEditText) EditText mTitle;
     @BindView(R.id.authorEditText) EditText mAuthor;
     @BindView(R.id.dateEditText) EditText mDate;
@@ -21,7 +21,7 @@ public class AddReviewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_review);
+        setContentView(R.layout.activity_review);
         ButterKnife.bind(this);
         Intent intent = getIntent();
 
@@ -32,7 +32,7 @@ public class AddReviewActivity extends AppCompatActivity {
                 String author = mAuthor.getText().toString();
                 String date = mDate.getText().toString();
                 String review = mReview.getText().toString();
-                Intent intent = new Intent(AddReviewActivity.this, MainActivity.class);
+                Intent intent = new Intent(ReviewActivity.this, MainActivity.class);
                 intent.putExtra("title", title);
                 startActivity(intent);
             }
