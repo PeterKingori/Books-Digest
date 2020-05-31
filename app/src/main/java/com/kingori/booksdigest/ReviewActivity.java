@@ -19,7 +19,8 @@ public class ReviewActivity extends AppCompatActivity {
     @BindView(R.id.addReview) Button mAddReviewButton;
 
     public static final String CURRENT_INFO = "com.kingori.booksdigest.CURRENT_INFO";
-    private ReviewInfo mCurrentReviewDetails;
+    private ReviewInfo mCurrentReview;
+    private boolean mIsNewReview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,19 +43,23 @@ public class ReviewActivity extends AppCompatActivity {
         });
 
         readDisplayStateValues();
-        displayReviewDetails(mTitle, mAuthor, mDate, mReview);
+
+        if (!mIsNewReview) {
+            displayReviewDetails(mTitle, mAuthor, mDate, mReview);
+        }
 
     }
 
     private void displayReviewDetails(EditText title, EditText author, EditText date, EditText review) {
-        title.setText(mCurrentReviewDetails.getTitle());
-        author.setText(mCurrentReviewDetails.getAuthor());
-        date.setText(mCurrentReviewDetails.getDate());
-        review.setText(mCurrentReviewDetails.getReview());
+        title.setText(mCurrentReview.getTitle());
+        author.setText(mCurrentReview.getAuthor());
+        date.setText(mCurrentReview.getDate());
+        review.setText(mCurrentReview.getReview());
     }
 
     private void readDisplayStateValues() {
         Intent intent = getIntent();
-        mCurrentReviewDetails = intent.getParcelableExtra(CURRENT_INFO);
+        mCurrentReview = intent.getParcelableExtra(CURRENT_INFO);
+        mIsNewReview = mCurrentReview == null;
     }
 }
