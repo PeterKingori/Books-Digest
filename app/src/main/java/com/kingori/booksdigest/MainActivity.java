@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void initializeDisplayContent() {
         List<String> titles = DataManager.getInstance().getTitles();
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, titles);
-        mListTitles.setAdapter(adapter);
+        ArrayAdapter<String> adapterTitles = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, titles);
+        mListTitles.setAdapter(adapterTitles);
 
         mListTitles.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
