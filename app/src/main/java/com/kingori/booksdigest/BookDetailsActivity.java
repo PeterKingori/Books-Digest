@@ -16,7 +16,6 @@ public class BookDetailsActivity extends AppCompatActivity {
     @BindView(R.id.dateEditText) TextView mDate;
     @BindView(R.id.reviewEditText) TextView mReview;
 
-    private ReviewInfo review;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,15 +23,15 @@ public class BookDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_book_details);
         ButterKnife.bind(this);
         
-        displayReview(review, mBookTitle, mAuthor, mDate, mReview);
+        displayReview(mBookTitle, mAuthor, mDate, mReview);
 
     }
 
-    private void displayReview(ReviewInfo review, TextView mBookTitle, TextView mAuthor,
+    private void displayReview(TextView mBookTitle, TextView mAuthor,
                                TextView mDate, TextView mReview) {
         Intent intent = getIntent();
         int position = intent.getIntExtra("position", 0);
-        review = DataManager.getInstance().getReviews().get(position);
+        ReviewInfo review = DataManager.getInstance().getReviews().get(position);
         mBookTitle.setText(review.getTitle());
         mAuthor.setText(review.getAuthor());
         mDate.setText(review.getDate());

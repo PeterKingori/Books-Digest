@@ -17,13 +17,12 @@ public class ReviewInfo implements Parcelable {
         this.mReview = review;
     }
 
-    protected ReviewInfo(Parcel parcel) {
+    private ReviewInfo(Parcel parcel) {
         mTitle = parcel.readString();
         mAuthor = parcel.readString();
         mDate = parcel.readString();
         mReview = parcel.readString();
     }
-
 
     public String getTitle() { return mTitle; }
 
