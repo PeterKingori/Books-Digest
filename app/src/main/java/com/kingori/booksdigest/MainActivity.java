@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 String title = ((TextView)view).getText().toString();
                 Toast.makeText(MainActivity.this, title, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, BookDetailsActivity.class);
-                intent.putExtra("position", position);
+                intent.putExtra(BookDetailsActivity.REVIEW_POSITION, position);
                 startActivity(intent);
             }
         });

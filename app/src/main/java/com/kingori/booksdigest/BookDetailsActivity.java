@@ -18,8 +18,11 @@ public class BookDetailsActivity extends AppCompatActivity {
     @BindView(R.id.dateEditText) TextView mDate;
     @BindView(R.id.reviewEditText) TextView mReview;
     @BindView(R.id.editReview) Button mEditReviewButton;
-    private int position;
+
+    private int mPosition;
     private static ReviewInfo selectedReview = null;
+    public static final String REVIEW_POSITION = "com.kingori.booksdigest.REVIEW_POSITION";
+    public static final int POSITION_NOT_SET = -1;
 
 
     @Override
@@ -29,8 +32,8 @@ public class BookDetailsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         Intent intent = getIntent();
 
-        position = intent.getIntExtra("position", 0);
-        selectedReview = DataManager.getInstance().getReviews().get(position);
+        mPosition = intent.getIntExtra(REVIEW_POSITION, POSITION_NOT_SET);
+        selectedReview = DataManager.getInstance().getReviews().get(mPosition);
 
         final String currentTitle = selectedReview.getTitle();
         final String currentAuthor = selectedReview.getAuthor();
