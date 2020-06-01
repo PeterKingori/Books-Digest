@@ -9,23 +9,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ReviewActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.kingori.booksdigest.MainActivity">
-            </meta-data>
-        </activity>
-        <activity android:name=".BookDetailsActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.kingori.booksdigest.MainActivity">
-            </meta-data>
-        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".BookDetailsActivity"
+            android:label="Book Details">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kingori.booksdigest.MainActivity">
+            </meta-data>
+        </activity>
+        <activity
+            android:name=".ReviewActivity"
+            android:label="Edit Review">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kingori.booksdigest.MainActivity">
+            </meta-data>
         </activity>
     </application>
 
