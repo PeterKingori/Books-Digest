@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.reviewList) ListView mListTitles;
     @BindView(R.id.newReview) Button mNewReviewButton;
+    @BindView(R.id.findReview) Button mFindReview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, ReviewActivity.class));
+            }
+        });
+
+        mFindReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, BookActivity.class));
             }
         });
 

@@ -9,9 +9,11 @@
     <string name="edit_review">Edit review</string>
     <string name="cancel">Go back</string>
     <string name="new_review">New review</string>
-    <string name="get_review">Get review</string>
+    <string name="find_review">Find review</string>
     <string name="addReview">Add</string>
     <string name="cancelReview">Cancel</string>
     <string name="titleEdit">Title</string>
     <string name="add_review_here">Add review here...</string>
+    <string name="enter_a_book_title">Enter a book title</string>
+    <string name="find_book">Find</string>
 </resources>
