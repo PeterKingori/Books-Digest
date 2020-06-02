@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.reviewList) ListView mListTitles;
     @BindView(R.id.newReview) Button mNewReviewButton;
-    @BindView(R.id.findReview) Button mFindReview;
+    @BindView(R.id.findMovie1) Button mFindMovie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mFindReview.setOnClickListener(new View.OnClickListener() {
+        mFindMovie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, BookActivity.class));

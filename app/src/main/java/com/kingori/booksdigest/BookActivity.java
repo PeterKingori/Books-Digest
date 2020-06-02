@@ -11,9 +11,8 @@ import android.widget.TextView;
 
 public class BookActivity extends AppCompatActivity {
     public static final String TAG = BookActivity.class.getSimpleName();
-    private Button mFindBookButton;
+    private Button mFindMovieButton;
     private EditText mFindBookEdit;
-    private TextView mTitleTextView;
     private String mBook;
 
 
@@ -22,14 +21,12 @@ public class BookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book);
         mFindBookEdit = findViewById(R.id.findBookEdit);
-        mFindBookButton = findViewById(R.id.findBookButton);
-        mTitleTextView = findViewById(R.id.titleTextView);
+        mFindMovieButton = findViewById(R.id.findMovie2);
 
-        mFindBookButton.setOnClickListener(new View.OnClickListener() {
+        mFindMovieButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mBook = mFindBookEdit.getText().toString();
-                mTitleTextView.setText(mBook);
             }
         });
 
