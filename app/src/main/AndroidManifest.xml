@@ -11,11 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BookActivity"></activity>
+        <activity android:name=".BookActivity"
+            android:label="Movie List">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kingori.booksdigest.MainActivity"></meta-data>
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
