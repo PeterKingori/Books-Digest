@@ -21,6 +21,11 @@ android {
         }
     }
 
+    buildTypes.each {
+        it.buildConfigField 'String', 'GOODREADS_API_KEY', GoodReadsApiKey
+        it.buildConfigField 'String', 'GOODREADS_SECRET', GoodReadsSecret
+    }
+
 }
 
 dependencies {
