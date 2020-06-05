@@ -11,8 +11,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 
 import retrofit2.Call;
@@ -21,8 +19,8 @@ import retrofit2.Response;
 
 import static com.kingori.booksdigest.Constants.THEMOVIEDB_API_KEY;
 
-public class BookActivity extends AppCompatActivity {
-    public static final String TAG = BookActivity.class.getSimpleName();
+public class MovieActivity extends AppCompatActivity {
+    public static final String TAG = MovieActivity.class.getSimpleName();
 
     private Button mFindMovieButton;
     private EditText mFindBookEdit;
@@ -38,7 +36,7 @@ public class BookActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book);
+        setContentView(R.layout.activity_movie);
         mFindBookEdit = findViewById(R.id.findBookEdit);
         mFindMovieButton = findViewById(R.id.findMovie2);
         mMovieTextView = findViewById(R.id.movieTextView);
@@ -69,7 +67,7 @@ public class BookActivity extends AppCompatActivity {
                                 movieReleaseDates[i] = moviesList.get(i).getReleaseDate();
                             }
                         }
-                        ArrayAdapter moviesAdapter = new BooksArrayAdapter(BookActivity.this,
+                        ArrayAdapter moviesAdapter = new BooksArrayAdapter(MovieActivity.this,
                                 android.R.layout.simple_list_item_1, movieTitles, movieDescriptions, movieReleaseDates);
                         mMovieListView.setAdapter(moviesAdapter);
                     }

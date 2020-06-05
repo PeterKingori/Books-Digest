@@ -21,7 +21,7 @@ public class BooksArrayAdapter extends ArrayAdapter {
         String title = mTitles[position];
         String description = mDescriptions[position];
         String releaseDate = mReleaseDates[position];
-        return String.format("%s \n Description: %s \n Release Date: %s", title, description, releaseDate);
+        return String.format("%s \n Plot: %s \n Release Date: %s", title, description, releaseDate);
     }
 
     @Override
