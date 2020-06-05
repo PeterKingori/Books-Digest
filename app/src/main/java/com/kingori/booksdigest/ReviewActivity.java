@@ -19,8 +19,10 @@ public class ReviewActivity extends AppCompatActivity {
     @BindView(R.id.addReview) Button mAddReviewButton;
 
     public static final String CURRENT_INFO = "com.kingori.booksdigest.CURRENT_INFO";
+    public static final String REVIEW_POSITION = "com.kingori.booksdigest.REVIEW_POSITION";
     private ReviewInfo mCurrentReview;
     private boolean mIsNewReview;
+    private int POSITION_NOT_SET = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +61,11 @@ public class ReviewActivity extends AppCompatActivity {
 
     private void readDisplayStateValues() {
         Intent intent = getIntent();
-        mCurrentReview = intent.getParcelableExtra(CURRENT_INFO);
-        mIsNewReview = mCurrentReview == null;
+        int position = intent.getIntExtra(REVIEW_POSITION, POSITION_NOT_SET);
+        mIsNewReview = position == POSITION_NOT_SET;
+        if (!mIsNewReview) {
+            mCurrentReview = (ReviewInfo) DataManager.getInstance().getReviews().get(position);
+        }
+
     }
 }

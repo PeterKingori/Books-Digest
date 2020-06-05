@@ -1,9 +1,15 @@
 package com.kingori.booksdigest;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.ShareActionProvider;
+import androidx.core.view.MenuCompat;
+import androidx.core.view.MenuItemCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ActionProvider;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,7 +25,6 @@ public class BookDetailsActivity extends AppCompatActivity {
     @BindView(R.id.reviewEditText) TextView mReview;
     @BindView(R.id.editReview) Button mEditReviewButton;
 
-    private int mPosition;
     private static ReviewInfo selectedReview = null;
     public static final String REVIEW_POSITION = "com.kingori.booksdigest.REVIEW_POSITION";
     public static final int POSITION_NOT_SET = -1;
@@ -32,22 +37,14 @@ public class BookDetailsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         Intent intent = getIntent();
 
-        mPosition = intent.getIntExtra(REVIEW_POSITION, POSITION_NOT_SET);
-        selectedReview = DataManager.getInstance().getReviews().get(mPosition);
-
-        final String currentTitle = selectedReview.getTitle();
-        final String currentAuthor = selectedReview.getAuthor();
-        final String currentDate = selectedReview.getDate();
-        final String currentReview = selectedReview.getReview();
-
+        final int position = intent.getIntExtra(REVIEW_POSITION, POSITION_NOT_SET);
+        selectedReview = DataManager.getInstance().getReviews().get(position);
 
         mEditReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ReviewInfo currentReviewInfo = new ReviewInfo(currentTitle, currentAuthor, currentDate,
-                        currentReview);
                 Intent intent = new Intent(BookDetailsActivity.this, ReviewActivity.class);
-                intent.putExtra(ReviewActivity.CURRENT_INFO, currentReviewInfo);
+                intent.putExtra(ReviewActivity.REVIEW_POSITION, position);
                 startActivity(intent);
             }
         });
@@ -64,6 +61,13 @@ public class BookDetailsActivity extends AppCompatActivity {
         mReview.setText(selectedReview.getReview());
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        ButterKnife.bind(this);
+
+        return true;
+    }
 
 //    @Override
 //    public boolean onOptionsItemSelected(MenuItem item) {
