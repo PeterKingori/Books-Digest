@@ -42,7 +42,7 @@ public class Result {
     private String title;
     @SerializedName("vote_average")
     @Expose
-    private Integer voteAverage;
+    private Float voteAverage;
     @SerializedName("overview")
     @Expose
     private String overview;
@@ -74,7 +74,7 @@ public class Result {
      * @param adult
      * @param posterPath
      */
-    public Result(Double popularity, Integer voteCount, Boolean video, Object posterPath, Integer id, Boolean adult, Object backdropPath, String originalLanguage, String originalTitle, List<Integer> genreIds, String title, Integer voteAverage, String overview, String releaseDate) {
+    public Result(Double popularity, Integer voteCount, Boolean video, Object posterPath, Integer id, Boolean adult, Object backdropPath, String originalLanguage, String originalTitle, List<Integer> genreIds, String title, Float voteAverage, String overview, String releaseDate) {
         super();
         this.popularity = popularity;
         this.voteCount = voteCount;
@@ -180,11 +180,11 @@ public class Result {
         this.title = title;
     }
 
-    public Integer getVoteAverage() {
+    public Float getVoteAverage() {
         return voteAverage;
     }
 
-    public void setVoteAverage(Integer voteAverage) {
+    public void setVoteAverage(Float voteAverage) {
         this.voteAverage = voteAverage;
     }
 
