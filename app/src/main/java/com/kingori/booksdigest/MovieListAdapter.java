@@ -53,8 +53,8 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
         public void bindMovie(Result movie) {
             mMovieTitleTextView.setText(movie.getTitle());
-            mMovieDescriptionTextView.setText(movie.getOverview());
-            mMovieReleaseDate.setText(movie.getReleaseDate());
+            mMovieDescriptionTextView.setText(String.format("Plot: %s", movie.getOverview()));
+            mMovieReleaseDate.setText(String.format("Release Date: %s", movie.getReleaseDate()));
         }
     }
 

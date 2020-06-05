@@ -5,8 +5,9 @@
     tools:context="com.kingori.booksdigest.BookDetailsActivity">
     <item
         android:id="@+id/action_share"
+        android:icon="@drawable/ic_share_white_18dp"
         android:title="Share"
-        android:orderInCategory="100"
-        app:showAsAction="never" />
+        app:actionProviderClass="android.widget.ShareActionProvider"
+        app:showAsAction="always" />
 
 </menu>
