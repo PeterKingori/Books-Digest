@@ -63,39 +63,38 @@ public class BookDetailsActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        //Inflate the menu; this adds items to the action bar if it's present
         getMenuInflater().inflate(R.menu.menu, menu);
-        ButterKnife.bind(this);
-
         return true;
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        if (id == R.id.action_share) {
-//            share();
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-//
-//    private void share() {
-//        String bookTitle = mBookTitle.getText().toString();
-//        String bookAuthor = mAuthor.getText().toString();
-//        String bookReview = mReview.getText().toString();
-//        String messageText = "Check out my review for this book: " + bookTitle;
-//        Intent sendIntent = new Intent();
-//        sendIntent.setAction(Intent.ACTION_SEND);
-//        sendIntent.putExtra(Intent.EXTRA_TEXT, messageText);
-//        sendIntent.putExtra(Intent.EXTRA_TEXT, bookAuthor);
-//        sendIntent.putExtra(Intent.EXTRA_TEXT, bookReview);
-//        sendIntent.setType("text/plain");
-//        Intent shareIntent = Intent.createChooser(sendIntent, null);
-//        startActivity(shareIntent);
-//    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        if (id == R.id.action_share) {
+            share();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void share() {
+        String bookTitle = mBookTitle.getText().toString();
+        String bookAuthor = mAuthor.getText().toString();
+        String bookReview = mReview.getText().toString();
+        String text = "Check out my review for this book: \n" + bookTitle + "\nBy: " + bookAuthor
+                +"\n" + bookReview;
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, bookTitle);
+        intent.putExtra(Intent.EXTRA_TEXT, text);
+
+        Intent shareIntent = Intent.createChooser(intent, null);
+        startActivity(shareIntent);
+    }
 }
