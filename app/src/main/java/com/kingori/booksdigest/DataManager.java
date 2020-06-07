@@ -20,6 +20,12 @@ public class DataManager {
         return ourInstance;
     }
 
+    public int createNewReview() {
+        ReviewInfo review = new ReviewInfo(null, null, null, null);
+        mReviews.add(review);
+        return mReviews.size() - 1;
+    }
+
     public List<String> getTitles() {
         return mTitles;
     }
@@ -27,6 +33,7 @@ public class DataManager {
     public List<ReviewInfo> getReviews() {
         return mReviews;
     }
+
 
 
     //Initialization code

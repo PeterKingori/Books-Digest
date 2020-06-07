@@ -36,6 +36,22 @@ public class ReviewInfo implements Parcelable {
         return mReview;
     }
 
+    public void setTitle(String title) {
+        mTitle = title;
+    }
+
+    public void setAuthor(String author) {
+        mAuthor = author;
+    }
+
+    public void setDate(String date) {
+        mDate = date;
+    }
+
+    public void setReview(String review) {
+        mReview = review;
+    }
+
     @Override
     public int describeContents() {
         return 0;

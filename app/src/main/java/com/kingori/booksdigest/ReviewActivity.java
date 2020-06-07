@@ -17,12 +17,14 @@ public class ReviewActivity extends AppCompatActivity {
     @BindView(R.id.dateEditText) EditText mDate;
     @BindView(R.id.reviewEditText) EditText mReview;
     @BindView(R.id.addReview) Button mAddReviewButton;
+    @BindView(R.id.cancelButton) Button mCancelButton;
 
     public static final String CURRENT_INFO = "com.kingori.booksdigest.CURRENT_INFO";
     public static final String REVIEW_POSITION = "com.kingori.booksdigest.REVIEW_POSITION";
     private ReviewInfo mCurrentReview;
     private boolean mIsNewReview;
     private int POSITION_NOT_SET = -1;
+    private int mReviewPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,26 +32,33 @@ public class ReviewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_review);
         ButterKnife.bind(this);
 
-        mAddReviewButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String title = mTitle.getText().toString();
-                String author = mAuthor.getText().toString();
-                String date = mDate.getText().toString();
-                String review = mReview.getText().toString();
-                ReviewInfo newReview = new ReviewInfo(title, author, date, review);
-                Intent intent = new Intent(ReviewActivity.this, MainActivity.class);
-                intent.putExtra("title", title);
-                startActivity(intent);
-            }
-        });
-
         readDisplayStateValues();
 
         if (!mIsNewReview) {
             displayReviewDetails(mTitle, mAuthor, mDate, mReview);
         }
 
+        mAddReviewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveReview();
+                Intent intent = new Intent(ReviewActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveReview();
+    }
+
+    private void saveReview() {
+        mCurrentReview.setTitle(mTitle.getText().toString());
+        mCurrentReview.setAuthor(mAuthor.getText().toString());
+        mCurrentReview.setDate(mDate.getText().toString());
+        mCurrentReview.setReview(mReview.getText().toString());
     }
 
     private void displayReviewDetails(EditText title, EditText author, EditText date, EditText review) {
@@ -63,9 +72,18 @@ public class ReviewActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int position = intent.getIntExtra(REVIEW_POSITION, POSITION_NOT_SET);
         mIsNewReview = position == POSITION_NOT_SET;
-        if (!mIsNewReview) {
+        if (mIsNewReview) {
+            createNewReview();
+        } else {
             mCurrentReview = (ReviewInfo) DataManager.getInstance().getReviews().get(position);
         }
-
     }
+
+    private void createNewReview() {
+        DataManager dm = DataManager.getInstance();
+        mReviewPosition = dm.createNewReview();
+        mCurrentReview = dm.getReviews().get(mReviewPosition);
+    }
+
+
 }
