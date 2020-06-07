@@ -17,7 +17,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.reviewList) ListView mListTitles;
     @BindView(R.id.newReview) Button mNewReviewButton;
     @BindView(R.id.findMovie1) Button mFindMovie;
@@ -27,20 +27,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
-        mNewReviewButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, ReviewActivity.class));
-            }
-        });
-
-        mFindMovie.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, MovieActivity.class));
-            }
-        });
+        
+        mNewReviewButton.setOnClickListener(this);
+        mFindMovie.setOnClickListener(this);
 
         initializeDisplayContent();
     }
@@ -60,6 +49,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == mNewReviewButton) {
+            startActivity(new Intent(MainActivity.this, ReviewActivity.class));
+        }
+        if (view == mFindMovie) {
+            startActivity(new Intent(MainActivity.this, MovieActivity.class));
+        }
     }
 
 }
