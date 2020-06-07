@@ -34,6 +34,9 @@ public class DataManager {
         return mReviews;
     }
 
+    public void removeReview(int index) {
+        mReviews.remove(index);
+    }
 
 
     //Initialization code
@@ -71,5 +74,6 @@ public class DataManager {
             "thoughtful memoir of family, medicine and literature. It is, despite its grim undertone, " +
             "accidentally inspiring.");
     }
+
 
 }

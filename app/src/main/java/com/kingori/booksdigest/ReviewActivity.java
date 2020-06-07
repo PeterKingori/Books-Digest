@@ -25,6 +25,7 @@ public class ReviewActivity extends AppCompatActivity {
     private boolean mIsNewReview;
     private int POSITION_NOT_SET = -1;
     private int mReviewPosition;
+    private boolean mIsCancelling;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +47,26 @@ public class ReviewActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        mCancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mIsCancelling = true;
+                finish();
+            }
+        });
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        saveReview();
+        if (mIsCancelling) {
+            if (mIsNewReview) {
+                DataManager.getInstance().removeReview(mReviewPosition);
+            }
+        } else {
+            saveReview();
+        }
     }
 
     private void saveReview() {
