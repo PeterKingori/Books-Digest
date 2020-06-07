@@ -1,6 +1,7 @@
 # Books Digest
 
-This is an app that enables users to record their own personal reviews of books they are reading.
+This is an app that enables users to record their own personal reviews of books they are reading. One can also
+search for movies based on a certain book title.
 
 ## Getting Started
 1. Clone the repo to your local computer
@@ -14,7 +15,9 @@ This is an app that enables users to record their own personal reviews of books 
 3. Android Studio
 
 ## Built With
- Java
+1. Java
+2. Android Studio
+3. [The Movie DataBase API](https://www.themoviedb.org/)
 
 ## Authors
 Peter Kingori Ndegwa
