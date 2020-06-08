@@ -21,23 +21,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.reviewList) ListView mListTitles;
     @BindView(R.id.newReview) Button mNewReviewButton;
     @BindView(R.id.findMovie1) Button mFindMovie;
+    private ArrayAdapter<String> mAdapterTitles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        
+
         mNewReviewButton.setOnClickListener(this);
         mFindMovie.setOnClickListener(this);
 
         initializeDisplayContent();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mAdapterTitles.notifyDataSetChanged();
+    }
+
     private void initializeDisplayContent() {
         List<String> titles = DataManager.getInstance().getTitles();
-        ArrayAdapter<String> adapterTitles = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, titles);
-        mListTitles.setAdapter(adapterTitles);
+        mAdapterTitles = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, titles);
+        mListTitles.setAdapter(mAdapterTitles);
 
         mListTitles.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

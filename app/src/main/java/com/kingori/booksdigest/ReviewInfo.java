@@ -3,6 +3,8 @@ package com.kingori.booksdigest;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Objects;
+
 
 public class ReviewInfo implements Parcelable {
     private String mTitle;
@@ -37,19 +39,35 @@ public class ReviewInfo implements Parcelable {
     }
 
     public void setTitle(String title) {
-        mTitle = title;
+        this.mTitle = title;
     }
 
     public void setAuthor(String author) {
-        mAuthor = author;
+        this.mAuthor = author;
     }
 
     public void setDate(String date) {
-        mDate = date;
+        this.mDate = date;
     }
 
     public void setReview(String review) {
-        mReview = review;
+        this.mReview = review;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ReviewInfo that = (ReviewInfo) o;
+        return mTitle.equals(that.mTitle) &&
+                mAuthor.equals(that.mAuthor) &&
+                mDate.equals(that.mDate) &&
+                mReview.equals(that.mReview);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mTitle, mAuthor, mDate, mReview);
     }
 
     @Override
