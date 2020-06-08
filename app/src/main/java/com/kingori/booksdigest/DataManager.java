@@ -9,12 +9,10 @@ public class DataManager {
     private static DataManager ourInstance = null;
 
     private List<ReviewInfo> mReviews = new ArrayList<>();
-    private List<String> mTitles = new ArrayList<>();
 
     public static DataManager getInstance() {
         if (ourInstance == null) {
             ourInstance = new DataManager();
-            ourInstance.initializeTitles();
             ourInstance.initializeReviews();
         }
         return ourInstance;
@@ -24,10 +22,6 @@ public class DataManager {
         ReviewInfo review = new ReviewInfo(null, null, null, null);
         mReviews.add(review);
         return mReviews.size() - 1;
-    }
-
-    public List<String> getTitles() {
-        return mTitles;
     }
 
     public List<ReviewInfo> getReviews() {
@@ -40,12 +34,6 @@ public class DataManager {
 
 
     //Initialization code
-    private void initializeTitles() {
-        mTitles.add("Unbowed");
-        mTitles.add("The Davis Dynasty");
-        mTitles.add("When Breath Becomes Air");
-    }
-
     private void initializeReviews() {
         mReviews.add(initializeReview1());
         mReviews.add(initializeReview2());

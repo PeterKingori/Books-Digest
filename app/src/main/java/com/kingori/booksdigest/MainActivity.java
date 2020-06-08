@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.reviewList) ListView mListTitles;
     @BindView(R.id.newReview) Button mNewReviewButton;
     @BindView(R.id.findMovie1) Button mFindMovie;
-    private ArrayAdapter<String> mAdapterTitles;
+    private ArrayAdapter<ReviewInfo> mAdapterTitles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initializeDisplayContent() {
-        List<String> titles = DataManager.getInstance().getTitles();
-        mAdapterTitles = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, titles);
+        List<ReviewInfo> reviews = DataManager.getInstance().getReviews();
+        mAdapterTitles = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, reviews);
         mListTitles.setAdapter(mAdapterTitles);
 
         mListTitles.setOnItemClickListener(new AdapterView.OnItemClickListener() {

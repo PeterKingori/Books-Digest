@@ -3,6 +3,8 @@ package com.kingori.booksdigest;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import java.util.Objects;
 
 
@@ -53,6 +55,9 @@ public class ReviewInfo implements Parcelable {
     public void setReview(String review) {
         this.mReview = review;
     }
+
+    @Override
+    public String toString() { return mTitle; }
 
     @Override
     public boolean equals(Object o) {
