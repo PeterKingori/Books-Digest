@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "918019800350",
+    "firebase_url": "https://myrestaurants-927a0.firebaseio.com",
+    "project_id": "myrestaurants-927a0",
+    "storage_bucket": "myrestaurants-927a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:918019800350:android:55d6453124780a54a11d0f",
+        "android_client_info": {
+          "package_name": "com.kingori.booksdigest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "918019800350-kii82drup7mdijr4aeq513i3joh93grt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kingori.booksdigest",
+            "certificate_hash": "bec5a0e0f586988c8ad1cd307b0f2c48728a0d68"
+          }
+        },
+        {
+          "client_id": "918019800350-koucm7905sd0vknqgsqjvalj990ji0qu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPKvomiZp7Vcihx7M8LejyZdLDT7OWfo0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "918019800350-koucm7905sd0vknqgsqjvalj990ji0qu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:918019800350:android:7afbe3bddd254081a11d0f",
+        "android_client_info": {
+          "package_name": "com.kingori.myrestaurants"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "918019800350-6a5apbndmipavkf4rllg22hm4keee0lo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kingori.myrestaurants",
+            "certificate_hash": "bec5a0e0f586988c8ad1cd307b0f2c48728a0d68"
+          }
+        },
+        {
+          "client_id": "918019800350-koucm7905sd0vknqgsqjvalj990ji0qu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPKvomiZp7Vcihx7M8LejyZdLDT7OWfo0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "918019800350-koucm7905sd0vknqgsqjvalj990ji0qu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

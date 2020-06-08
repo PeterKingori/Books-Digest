@@ -1,25 +1,27 @@
 package com.kingori.booksdigest;
 
 public class Movie {
-    private String mMovieTitle;
-    private String mOverview;
-    private String mReleaseDate;
+    private String movieTitle;
+    private String overview;
+    private String releaseDate;
 
     public Movie(String movieTitle, String overview, String releaseDate) {
-        mMovieTitle = movieTitle;
-        mOverview = overview;
-        mReleaseDate = releaseDate;
+        movieTitle = movieTitle;
+        overview = overview;
+        releaseDate = releaseDate;
     }
 
+    public Movie() {}
+
     public String getMovieTitle() {
-        return mMovieTitle;
+        return movieTitle;
     }
 
     public String getOverview() {
-        return mOverview;
+        return overview;
     }
 
     public String getReleaseDate() {
-        return mReleaseDate;
+        return releaseDate;
     }
 }

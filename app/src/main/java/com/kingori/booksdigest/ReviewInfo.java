@@ -9,70 +9,72 @@ import java.util.Objects;
 
 
 public class ReviewInfo implements Parcelable {
-    private String mTitle;
-    private String mAuthor;
-    private String mDate;
-    private String mReview;
+    private String title;
+    private String author;
+    private String date;
+    private String review;
+
+    public ReviewInfo() {}
 
     public ReviewInfo(String title, String author, String date, String review) {
-        this.mTitle = title;
-        this.mAuthor = author;
-        this.mDate = date;
-        this.mReview = review;
+        this.title = title;
+        this.author = author;
+        this.date = date;
+        this.review = review;
     }
 
     private ReviewInfo(Parcel parcel) {
-        mTitle = parcel.readString();
-        mAuthor = parcel.readString();
-        mDate = parcel.readString();
-        mReview = parcel.readString();
+        title = parcel.readString();
+        author = parcel.readString();
+        date = parcel.readString();
+        review = parcel.readString();
     }
 
-    public String getTitle() { return mTitle; }
+    public String getTitle() { return title; }
 
     public String getAuthor() {
-        return mAuthor;
+        return author;
     }
 
-    public String getDate() { return mDate; }
+    public String getDate() { return date; }
 
     public String getReview() {
-        return mReview;
+        return review;
     }
 
     public void setTitle(String title) {
-        this.mTitle = title;
+        this.title = title;
     }
 
     public void setAuthor(String author) {
-        this.mAuthor = author;
+        this.author = author;
     }
 
     public void setDate(String date) {
-        this.mDate = date;
+        this.date = date;
     }
 
     public void setReview(String review) {
-        this.mReview = review;
+        this.review = review;
     }
 
     @Override
-    public String toString() { return mTitle; }
+    public String toString() { return title; }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ReviewInfo that = (ReviewInfo) o;
-        return mTitle.equals(that.mTitle) &&
-                mAuthor.equals(that.mAuthor) &&
-                mDate.equals(that.mDate) &&
-                mReview.equals(that.mReview);
+        return title.equals(that.title) &&
+                author.equals(that.author) &&
+                date.equals(that.date) &&
+                review.equals(that.review);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(mTitle, mAuthor, mDate, mReview);
+        return Objects.hash(title, author, date, review);
     }
 
     @Override
@@ -82,10 +84,10 @@ public class ReviewInfo implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(mTitle);
-        parcel.writeString(mAuthor);
-        parcel.writeString(mDate);
-        parcel.writeString(mReview);
+        parcel.writeString(title);
+        parcel.writeString(author);
+        parcel.writeString(date);
+        parcel.writeString(review);
     }
 
     public static final Parcelable.Creator<ReviewInfo> CREATOR =
