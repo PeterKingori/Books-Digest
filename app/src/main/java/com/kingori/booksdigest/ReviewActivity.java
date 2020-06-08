@@ -1,5 +1,6 @@
 package com.kingori.booksdigest;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -40,6 +41,11 @@ public class ReviewActivity extends AppCompatActivity {
         ViewModelProvider viewModelProvider = new ViewModelProvider(getViewModelStore(),
                 ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()));
         mViewModel = viewModelProvider.get(ReviewActivityViewModel.class);
+
+        if (mViewModel.mIsNewlyCreated && savedInstanceState != null) {
+            mViewModel.restoreState(savedInstanceState);
+        }
+        mViewModel.mIsNewlyCreated = false;
 
         readDisplayStateValues();
         saveOriginalReview();
@@ -149,6 +155,14 @@ public class ReviewActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (outState != null) {
+            mViewModel.saveState(outState);
+        }
     }
 
     private void share() {
