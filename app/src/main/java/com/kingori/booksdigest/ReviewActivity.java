@@ -26,6 +26,10 @@ public class ReviewActivity extends AppCompatActivity {
     private int POSITION_NOT_SET = -1;
     private int mReviewPosition;
     private boolean mIsCancelling;
+    private String mOriginalReviewTitle;
+    private String mOriginalReviewAuthor;
+    private String mOriginalReviewDate;
+    private String mOriginalReviewReview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,7 @@ public class ReviewActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         readDisplayStateValues();
+        saveOriginalReview();
 
         if (!mIsNewReview) {
             displayReviewDetails(mTitle, mAuthor, mDate, mReview);
@@ -57,6 +62,16 @@ public class ReviewActivity extends AppCompatActivity {
         });
     }
 
+    private void saveOriginalReview() {
+         if (mIsNewReview) {
+             return;
+         }
+        mOriginalReviewTitle = mCurrentReview.getTitle();
+        mOriginalReviewAuthor = mCurrentReview.getAuthor();
+        mOriginalReviewDate = mCurrentReview.getDate();
+        mOriginalReviewReview = mCurrentReview.getReview();
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -64,9 +79,19 @@ public class ReviewActivity extends AppCompatActivity {
             if (mIsNewReview) {
                 DataManager.getInstance().removeReview(mReviewPosition);
             }
+            else {
+                storePreviousReviewDetails();
+            }
         } else {
             saveReview();
         }
+    }
+
+    private void storePreviousReviewDetails() {
+        mCurrentReview.setTitle(mOriginalReviewTitle);
+        mCurrentReview.setAuthor(mOriginalReviewAuthor);
+        mCurrentReview.setDate(mOriginalReviewDate);
+        mCurrentReview.setReview(mOriginalReviewReview);
     }
 
     private void saveReview() {
@@ -99,6 +124,5 @@ public class ReviewActivity extends AppCompatActivity {
         mReviewPosition = dm.createNewReview();
         mCurrentReview = dm.getReviews().get(mReviewPosition);
     }
-
 
 }
