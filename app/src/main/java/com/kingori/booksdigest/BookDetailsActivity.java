@@ -1,13 +1,9 @@
 package com.kingori.booksdigest;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.ShareActionProvider;
-import androidx.core.view.MenuCompat;
-import androidx.core.view.MenuItemCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ActionProvider;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,7 +24,6 @@ public class BookDetailsActivity extends AppCompatActivity {
     private static ReviewInfo selectedReview = null;
     public static final String REVIEW_POSITION = "com.kingori.booksdigest.REVIEW_POSITION";
     public static final int POSITION_NOT_SET = -1;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

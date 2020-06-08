@@ -3,13 +3,13 @@ package com.kingori.booksdigest;
 import android.content.Context;
 import android.widget.ArrayAdapter;
 
-public class BooksArrayAdapter extends ArrayAdapter {
+public class MoviesArrayAdapter extends ArrayAdapter {
     private Context mContext;
     private String[] mTitles;
     private String[] mDescriptions;
     private String[] mReleaseDates;
 
-    public BooksArrayAdapter(Context context, int resource, String[] titles, String[] descriptions, String[] releaseDates) {
+    public MoviesArrayAdapter(Context context, int resource, String[] titles, String[] descriptions, String[] releaseDates) {
         super(context, resource);
         this.mContext = context;
         this.mTitles = titles;
