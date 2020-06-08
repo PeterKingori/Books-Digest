@@ -11,6 +11,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,6 +64,13 @@ public class ReviewActivity extends AppCompatActivity {
                 saveReview();
                 Intent intent = new Intent(ReviewActivity.this, MainActivity.class);
                 startActivity(intent);
+
+                //Database connection to save review
+                DatabaseReference reviewReference = FirebaseDatabase
+                        .getInstance()
+                        .getReference(Constants.FIREBASE_CHILD_REVIEWS);
+                reviewReference.push().setValue(mCurrentReview);
+                Toast.makeText(getBaseContext(), "Saved", Toast.LENGTH_SHORT).show();
             }
         });
 
