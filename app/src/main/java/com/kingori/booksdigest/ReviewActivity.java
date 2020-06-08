@@ -1,9 +1,12 @@
 package com.kingori.booksdigest;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,16 +29,17 @@ public class ReviewActivity extends AppCompatActivity {
     private int POSITION_NOT_SET = -1;
     private int mReviewPosition;
     private boolean mIsCancelling;
-    private String mOriginalReviewTitle;
-    private String mOriginalReviewAuthor;
-    private String mOriginalReviewDate;
-    private String mOriginalReviewReview;
+    private ReviewActivityViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
         ButterKnife.bind(this);
+
+        ViewModelProvider viewModelProvider = new ViewModelProvider(getViewModelStore(),
+                ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()));
+        mViewModel = viewModelProvider.get(ReviewActivityViewModel.class);
 
         readDisplayStateValues();
         saveOriginalReview();
@@ -66,10 +70,10 @@ public class ReviewActivity extends AppCompatActivity {
          if (mIsNewReview) {
              return;
          }
-        mOriginalReviewTitle = mCurrentReview.getTitle();
-        mOriginalReviewAuthor = mCurrentReview.getAuthor();
-        mOriginalReviewDate = mCurrentReview.getDate();
-        mOriginalReviewReview = mCurrentReview.getReview();
+        mViewModel.mOriginalReviewTitle = mCurrentReview.getTitle();
+        mViewModel.mOriginalReviewAuthor = mCurrentReview.getAuthor();
+        mViewModel.mOriginalReviewDate = mCurrentReview.getDate();
+        mViewModel.mOriginalReviewReview = mCurrentReview.getReview();
     }
 
     @Override
@@ -88,10 +92,10 @@ public class ReviewActivity extends AppCompatActivity {
     }
 
     private void storePreviousReviewDetails() {
-        mCurrentReview.setTitle(mOriginalReviewTitle);
-        mCurrentReview.setAuthor(mOriginalReviewAuthor);
-        mCurrentReview.setDate(mOriginalReviewDate);
-        mCurrentReview.setReview(mOriginalReviewReview);
+        mCurrentReview.setTitle(mViewModel.mOriginalReviewTitle);
+        mCurrentReview.setAuthor(mViewModel.mOriginalReviewAuthor);
+        mCurrentReview.setDate(mViewModel.mOriginalReviewDate);
+        mCurrentReview.setReview(mViewModel.mOriginalReviewReview);
     }
 
     private void saveReview() {
@@ -123,6 +127,43 @@ public class ReviewActivity extends AppCompatActivity {
         DataManager dm = DataManager.getInstance();
         mReviewPosition = dm.createNewReview();
         mCurrentReview = dm.getReviews().get(mReviewPosition);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //Inflate the menu; this adds items to the action bar if it's present
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        if (id == R.id.action_share) {
+            share();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void share() {
+        String bookTitle = mTitle.getText().toString();
+        String bookAuthor = mAuthor.getText().toString();
+        String bookReview = mReview.getText().toString();
+        String text = "Check out my review for this book: \n" + bookTitle + "\nBy: " + bookAuthor
+                +"\n" + bookReview;
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, bookTitle);
+        intent.putExtra(Intent.EXTRA_TEXT, text);
+
+        Intent shareIntent = Intent.createChooser(intent, null);
+        startActivity(shareIntent);
     }
 
 }
