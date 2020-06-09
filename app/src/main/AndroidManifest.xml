@@ -12,13 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MovieActivity"
+            android:name=".ui.MovieActivity"
             android:label="Movie List">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.kingori.booksdigest.MainActivity" />
+                android:value="com.kingori.booksdigest.ui.MainActivity" />
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,18 +26,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".BookDetailsActivity"
+            android:name=".ui.BookDetailsActivity"
             android:label="Book Details">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.kingori.booksdigest.MainActivity" />
+                android:value="com.kingori.booksdigest.ui.MainActivity" />
         </activity>
         <activity
-            android:name=".ReviewActivity"
+            android:name=".ui.ReviewActivity"
             android:label="Edit Review">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.kingori.booksdigest.MainActivity" />
+                android:value="com.kingori.booksdigest.ui.MainActivity" />
         </activity>
     </application>
 

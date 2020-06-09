@@ -1,4 +1,4 @@
-package com.kingori.booksdigest;
+package com.kingori.booksdigest.adapters;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;

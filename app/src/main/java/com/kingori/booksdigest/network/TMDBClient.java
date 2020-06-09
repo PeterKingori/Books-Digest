@@ -1,4 +1,6 @@
-package com.kingori.booksdigest;
+package com.kingori.booksdigest.network;
+
+import com.kingori.booksdigest.network.TMDBApi;
 
 import java.io.IOException;
 

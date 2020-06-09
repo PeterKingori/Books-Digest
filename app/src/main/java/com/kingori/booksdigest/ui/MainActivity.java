@@ -1,4 +1,4 @@
-package com.kingori.booksdigest;
+package com.kingori.booksdigest.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,9 +19,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.kingori.booksdigest.Constants;
+import com.kingori.booksdigest.R;
+import com.kingori.booksdigest.models.ReviewInfo;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

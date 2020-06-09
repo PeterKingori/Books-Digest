@@ -1,4 +1,4 @@
-package com.kingori.booksdigest;
+package com.kingori.booksdigest.models;
 
 public class Movie {
     private String movieTitle;

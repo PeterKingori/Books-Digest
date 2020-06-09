@@ -1,5 +1,5 @@
 
-package com.kingori.booksdigest;
+package com.kingori.booksdigest.models;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

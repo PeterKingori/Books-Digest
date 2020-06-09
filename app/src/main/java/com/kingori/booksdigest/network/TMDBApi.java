@@ -1,9 +1,10 @@
-package com.kingori.booksdigest;
+package com.kingori.booksdigest.network;
+
+import com.kingori.booksdigest.models.MovieDatabaseSearchResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-import static com.kingori.booksdigest.Constants.THEMOVIEDB_API_KEY;
 
 
 public interface TMDBApi {

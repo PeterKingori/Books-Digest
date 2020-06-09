@@ -1,5 +1,7 @@
 package com.kingori.booksdigest;
 
+import com.kingori.booksdigest.models.ReviewInfo;
+
 import java.util.ArrayList;
 import java.util.List;
 

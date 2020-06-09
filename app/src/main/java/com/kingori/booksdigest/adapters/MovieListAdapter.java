@@ -1,4 +1,4 @@
-package com.kingori.booksdigest;
+package com.kingori.booksdigest.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.kingori.booksdigest.R;
+import com.kingori.booksdigest.models.Result;
 
 import org.jetbrains.annotations.NotNull;
 

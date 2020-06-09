@@ -1,14 +1,29 @@
-package com.kingori.booksdigest;
+package com.kingori.booksdigest.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.kingori.booksdigest.Constants;
+import com.kingori.booksdigest.DataManager;
+import com.kingori.booksdigest.R;
+import com.kingori.booksdigest.models.ReviewInfo;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,17 +36,34 @@ public class BookDetailsActivity extends AppCompatActivity {
     @BindView(R.id.reviewEditText) TextView mReview;
     @BindView(R.id.editReview) Button mEditReviewButton;
 
-    private static ReviewInfo selectedReview = null;
+    private static ReviewInfo selectedReview;
     public static final String REVIEW_POSITION = "com.kingori.booksdigest.REVIEW_POSITION";
     public static final int POSITION_NOT_SET = -1;
+    private static List<ReviewInfo> mReviews = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_details);
         ButterKnife.bind(this);
-        Intent intent = getIntent();
 
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_CHILD_REVIEWS);
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.e("Count: " ,"" + dataSnapshot.getChildrenCount());
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    mReviews.add(snapshot.getValue(ReviewInfo.class));
+                    Log.e("Reviews: ", String.valueOf(mReviews));
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("The read failed: ", databaseError.getMessage());
+            }
+        });
+
+        Intent intent = getIntent();
         final int position = intent.getIntExtra(REVIEW_POSITION, POSITION_NOT_SET);
         selectedReview = DataManager.getInstance().getReviews().get(position);
 

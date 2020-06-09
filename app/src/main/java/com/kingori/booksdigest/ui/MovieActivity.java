@@ -1,4 +1,4 @@
-package com.kingori.booksdigest;
+package com.kingori.booksdigest.ui;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +10,13 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.kingori.booksdigest.models.MovieDatabaseSearchResponse;
+import com.kingori.booksdigest.adapters.MovieListAdapter;
+import com.kingori.booksdigest.R;
+import com.kingori.booksdigest.models.Result;
+import com.kingori.booksdigest.network.TMDBApi;
+import com.kingori.booksdigest.network.TMDBClient;
 
 import org.jetbrains.annotations.NotNull;
 
