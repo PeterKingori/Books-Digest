@@ -47,25 +47,10 @@ public class BookDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_book_details);
         ButterKnife.bind(this);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_CHILD_REVIEWS);
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.e("Count: " ,"" + dataSnapshot.getChildrenCount());
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    mReviews.add(snapshot.getValue(ReviewInfo.class));
-                    Log.e("Reviews: ", String.valueOf(mReviews));
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("The read failed: ", databaseError.getMessage());
-            }
-        });
-
         Intent intent = getIntent();
         final int position = intent.getIntExtra(REVIEW_POSITION, POSITION_NOT_SET);
         selectedReview = DataManager.getInstance().getReviews().get(position);
+        displayReview(mBookTitle, mAuthor, mDate, mReview);
 
         mEditReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,8 +60,6 @@ public class BookDetailsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        displayReview(mBookTitle, mAuthor, mDate, mReview);
 
     }
 
