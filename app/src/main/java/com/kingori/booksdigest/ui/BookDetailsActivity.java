@@ -22,6 +22,8 @@ import com.kingori.booksdigest.DataManager;
 import com.kingori.booksdigest.R;
 import com.kingori.booksdigest.models.ReviewInfo;
 
+import org.parceler.Parcels;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +41,7 @@ public class BookDetailsActivity extends AppCompatActivity {
     private static ReviewInfo selectedReview;
     public static final String REVIEW_POSITION = "com.kingori.booksdigest.REVIEW_POSITION";
     public static final int POSITION_NOT_SET = -1;
-    private static List<ReviewInfo> mReviews = new ArrayList<>();
+    private static List<ReviewInfo> mReviews;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +49,11 @@ public class BookDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_book_details);
         ButterKnife.bind(this);
 
-        Intent intent = getIntent();
-        final int position = intent.getIntExtra(REVIEW_POSITION, POSITION_NOT_SET);
+        mReviews = Parcels.unwrap(getIntent().getParcelableExtra("reviews"));
+        final int position = getIntent().getIntExtra(REVIEW_POSITION, POSITION_NOT_SET);
+
+//        Intent intent = getIntent();
+//        final int position = intent.getIntExtra(REVIEW_POSITION, POSITION_NOT_SET);
         selectedReview = DataManager.getInstance().getReviews().get(position);
         displayReview(mBookTitle, mAuthor, mDate, mReview);
 
@@ -60,7 +65,6 @@ public class BookDetailsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     private void displayReview(TextView mBookTitle, TextView mAuthor,
@@ -89,7 +93,6 @@ public class BookDetailsActivity extends AppCompatActivity {
             share();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 

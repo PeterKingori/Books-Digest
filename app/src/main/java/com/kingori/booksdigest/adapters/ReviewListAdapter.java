@@ -1,6 +1,7 @@
 package com.kingori.booksdigest.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.kingori.booksdigest.R;
 import com.kingori.booksdigest.models.ReviewInfo;
+import com.kingori.booksdigest.ui.BookDetailsActivity;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -44,7 +48,7 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewListAdapter.Re
         return mReviews.size();
     }
 
-    public class ReviewViewHolder extends RecyclerView.ViewHolder {
+    public class ReviewViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.bookTitle) TextView mBookTitle;
         @BindView(R.id.bookAuthor) TextView mBookAuthor;
 
@@ -54,11 +58,21 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewListAdapter.Re
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+            itemView.setOnClickListener(this);
         }
 
         public void bindReview(ReviewInfo review) {
             mBookTitle.setText(review.getTitle());
             mBookAuthor.setText(String.format("By: %s", review.getAuthor()));
+        }
+
+        @Override
+        public void onClick(View v) {
+            int itemPosition = getLayoutPosition();
+            Intent intent = new Intent(mContext, BookDetailsActivity.class);
+            intent.putExtra(BookDetailsActivity.REVIEW_POSITION, itemPosition);
+            intent.putExtra("reviews", Parcels.wrap(mReviews));
+            mContext.startActivity(intent);
         }
     }
 }

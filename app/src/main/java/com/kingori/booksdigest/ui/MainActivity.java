@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initializeDisplayContent() {
         List<ReviewInfo> reviews = DataManager.getInstance().getReviews();
-        Log.e(" Review: ", String.valueOf(reviews));
         mAdapter = new ReviewListAdapter(MainActivity.this, reviews);
         mRecyclerView.setAdapter(mAdapter);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
