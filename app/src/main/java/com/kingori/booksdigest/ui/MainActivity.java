@@ -1,20 +1,26 @@
 package com.kingori.booksdigest.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.kingori.booksdigest.DataManager;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.kingori.booksdigest.Constants;
 import com.kingori.booksdigest.R;
 import com.kingori.booksdigest.adapters.ReviewListAdapter;
 import com.kingori.booksdigest.models.ReviewInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -40,12 +46,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initializeDisplayContent() {
-        List<ReviewInfo> reviews = DataManager.getInstance().getReviews();
-        mAdapter = new ReviewListAdapter(MainActivity.this, reviews);
-        mRecyclerView.setAdapter(mAdapter);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setHasFixedSize(true);
+//        List<ReviewInfo> reviews = DataManager.getInstance().getReviews();
+        final List<ReviewInfo> reviews = new ArrayList<>();
+        DatabaseReference reviewReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_REVIEWS);
+        reviewReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    reviews.add(snapshot.getValue(ReviewInfo.class));
+                }
+                mAdapter = new ReviewListAdapter(MainActivity.this, reviews);
+                mRecyclerView.setAdapter(mAdapter);
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
+                mRecyclerView.setLayoutManager(layoutManager);
+                mRecyclerView.setHasFixedSize(true);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override

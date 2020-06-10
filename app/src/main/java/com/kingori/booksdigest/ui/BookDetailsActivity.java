@@ -41,7 +41,6 @@ public class BookDetailsActivity extends AppCompatActivity {
     private static ReviewInfo selectedReview;
     public static final String REVIEW_POSITION = "com.kingori.booksdigest.REVIEW_POSITION";
     public static final int POSITION_NOT_SET = -1;
-    private static List<ReviewInfo> mReviews;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +48,10 @@ public class BookDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_book_details);
         ButterKnife.bind(this);
 
-        mReviews = Parcels.unwrap(getIntent().getParcelableExtra("reviews"));
+        List<ReviewInfo> reviews = Parcels.unwrap(getIntent().getParcelableExtra("reviews"));
         final int position = getIntent().getIntExtra(REVIEW_POSITION, POSITION_NOT_SET);
-
-//        Intent intent = getIntent();
-//        final int position = intent.getIntExtra(REVIEW_POSITION, POSITION_NOT_SET);
-        selectedReview = DataManager.getInstance().getReviews().get(position);
+//        selectedReview = DataManager.getInstance().getReviews().get(position);
+        selectedReview = reviews.get(position);
         displayReview(mBookTitle, mAuthor, mDate, mReview);
 
         mEditReviewButton.setOnClickListener(new View.OnClickListener() {
